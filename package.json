@@ -1,0 +1,25 @@
+{
+  "name": "train-server",
+  "version": "1.0.0",
+  "description": "A CS project with Carlos Arcenas and Carlo de Guzman",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Mike del Castillo",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "jquery": "^3.3.1",
+    "navigo": "^7.1.1",
+    "pg": "^7.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0"
+  }
+}
