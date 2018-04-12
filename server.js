@@ -24,6 +24,7 @@ app.get('/api/systems', function(expressRequest, expressResponse) {
     pool.end();
   }).catch(poolError => {
     pool.end();
+    console.log(poolError);
     expressResponse.send(`{"error":true}`);
   });
 })
@@ -40,7 +41,7 @@ app.get('/api/systems/:id', function(expressRequest, expressResponse) {
     poolSystemsResponse.rows.forEach(system => {
       let {system_id} = system;
       pool.query(getQuery('get-lines'), [system_id]).then(poolResponse => {
-        system.lines = poolResponse.rows.map(row => [row.line_id.trim(), row.line_name.trim()]);
+        system.lines = poolResponse.rows.map(row => [row.line_id.trim(), row.line_name.trim(), row.line_color.trim()]);
 
         return pool.query(getQuery('get-stations'), [system_id]);
       }).then(poolResponse => {
@@ -48,7 +49,7 @@ app.get('/api/systems/:id', function(expressRequest, expressResponse) {
 
         return pool.query(getQuery('get-order'), [system_id]);
       }).then(poolResponse => {
-        system.order = poolResponse.rows.map(row => [Number(row.order_number.trim()), row.line_id.trim(), row.station_id.trim()]);
+        system.order = poolResponse.rows.map(row => [Number(row.order_number), row.line_id.trim(), row.station_id.trim()]);
 
         if(system.order.length == 0){
           system.stations.forEach(station => {
@@ -74,6 +75,7 @@ app.get('/api/systems/:id', function(expressRequest, expressResponse) {
     });
   }).catch(e => {
     pool.end();
+    console.log(e);
     expressResponse.send(`{"error":true}`);
   });
 })
