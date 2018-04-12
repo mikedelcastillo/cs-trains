@@ -4,7 +4,7 @@ SELECT
   countries.name AS country_name,
   cities.city_id,
   cities.name AS city_name,
-  systems.name AS system_name,
+  systems.name AS system_name/*,
   (SELECT
     MIN(entries_exits.unix_start)
   FROM entries_exits
@@ -12,7 +12,7 @@ SELECT
   (SELECT
     MAX(entries_exits.unix_end)
   FROM entries_exits
-    WHERE systems.system_id = entries_exits.system_id) AS unix_end
+    WHERE systems.system_id = entries_exits.system_id) AS unix_end*/
 FROM systems
 LEFT JOIN cities
   ON systems.city_id = cities.city_id
