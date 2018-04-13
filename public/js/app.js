@@ -10880,7 +10880,9 @@ var staticRenderFns = [
     return _c("div", { attrs: { id: "header-wrapper" } }, [
       _c("div", { staticClass: "title" }, [_vm._v("Train Systems")]),
       _c("div", { staticClass: "subtitle" }, [
-        _vm._v("Visualization by Carlos, Carlo and Mike")
+        _vm._v(
+          "Visualization by Carlos Arcenas, Carlo de Guzman and Mike del Castillo"
+        )
       ])
     ])
   }

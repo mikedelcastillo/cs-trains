@@ -10661,7 +10661,7 @@ const moment = __webpack_require__(26);
     },
     viewingTime() {
       if (this.range.start == 0) return "";
-      return moment(this.range.time * 1000).format("MMM DD, YYYY HH:MM");
+      return moment(this.range.time * 1000).format("MMM DD, YYYY ddd HH:MM");
     }
   },
   watch: {
@@ -10675,6 +10675,10 @@ const moment = __webpack_require__(26);
       this.activities.forEach(act => {
         if (act.unix_start <= this.range.time && this.range.time <= act.unix_end) {
           this.range.activities.push(act);
+
+          let duration = act.unix_end - act.unix_start;
+          totalEntries += act.entries * (hour / duration);
+          totalExits += act.exits * (hour / duration);
         }
       });
 
@@ -10685,10 +10689,6 @@ const moment = __webpack_require__(26);
           if (activity) {
             station.entries = activity.entries;
             station.exits = activity.exits;
-
-            let duration = activity.unix_end - activity.unix_start;
-            totalEntries += station.entries * (hour / duration);
-            totalExits += station.exits * (hour / duration);
           } else {
             station.entries = 0;
             station.exits = 0;
@@ -10706,6 +10706,8 @@ const moment = __webpack_require__(26);
     playLoop() {
       if (this.playing) {
         this.range.time = Math.min(this.range.end, this.range.time + this.range.step);
+
+        if (this.range.time == this.range.end) this.playing = false;
       }
 
       requestAnimationFrame(this.playLoop);
@@ -10795,6 +10797,62 @@ const moment = __webpack_require__(26);
         this.range.target = this.range.time = time;
 
         this.activities = data;
+
+        let graphActivities = [];
+        let maxUtility = 0;
+
+        for (let t = this.range.start; t < this.range.end; t += 60 * 60) {
+          let totalEntries = 0;
+          let totalExits = 0;
+          let hour = 60 * 60;
+
+          this.activities.forEach(act => {
+            if (act.unix_start <= t && t <= act.unix_end) {
+              let duration = act.unix_end - act.unix_start;
+              totalEntries += act.entries * (hour / duration);
+              totalExits += act.exits * (hour / duration);
+            }
+          });
+
+          let totalStations = this.system.stations.length;
+          let utilityIndex = (totalEntries / totalStations + totalExits / totalStations) / 2;
+
+          utilityIndex = Math.log(1 + utilityIndex);
+
+          maxUtility = Math.max(maxUtility, utilityIndex);
+
+          graphActivities.push({
+            time: t,
+            utilityIndex
+          });
+        }
+
+        let timelineGraph = this.$refs.activityCanvas;
+        let timelineGraphContext = timelineGraph.getContext("2d");
+        timelineGraph.width = timelineGraph.clientWidth * 2;
+        timelineGraph.height = timelineGraph.clientHeight * 2;
+
+        timelineGraphContext.clearRect(0, 0, timelineGraphContext.width, timelineGraphContext.height);
+
+        timelineGraphContext.beginPath();
+        timelineGraphContext.moveTo(0, timelineGraph.height);
+
+        let timelineGradient = timelineGraphContext.createLinearGradient(0, 0, 0, timelineGraph.height);
+        timelineGradient.addColorStop(0, "#56CCF2");
+        timelineGradient.addColorStop(1, "rgba(187,107,217,0)");
+
+        graphActivities.forEach(act => {
+          let x = (act.time - this.range.start) / (this.range.end - this.range.start);
+          let y = 1 - act.utilityIndex / 15;
+
+          timelineGraphContext.lineTo(timelineGraph.width * x, timelineGraph.height * y);
+        });
+
+        timelineGraphContext.lineTo(timelineGraph.width, timelineGraph.height);
+        timelineGraphContext.closePath();
+        timelineGraphContext.fillStyle = timelineGradient;
+        timelineGraphContext.fill();
+
         this.loading = false;
       });
     },

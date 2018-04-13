@@ -153,7 +153,7 @@ export default {
       #sidebar-wrapper
         #header-wrapper
           .title Train Systems
-          .subtitle Visualization by Carlos, Carlo and Mike
+          .subtitle Visualization by Carlos Arcenas, Carlo de Guzman and Mike del Castillo
         #systems-wrapper
           .title Systems
           .systems
