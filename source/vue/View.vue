@@ -40,14 +40,14 @@ export default {
   computed: {
     viewingRange() {
       return `from ${
-        moment(this.range.start * 1000).format("MMMM D")
+        moment(this.range.start * 1000).utcOffset(this.system.utc_offset).format("MMMM D")
       } to ${
-        moment(this.range.end * 1000).format("MMMM D, YYYY")
+        moment(this.range.end * 1000).utcOffset(this.system.utc_offset).format("MMMM D, YYYY")
       }`;
     },
     viewingTime() {
       if(this.range.start == 0) return "";
-      return moment(this.range.time * 1000).format("MMM DD, YYYY ddd HH:MM");
+      return moment(this.range.time * 1000).utcOffset(this.system.utc_offset).format("MMM DD, YYYY ddd HH:MM");
     }
   },
   watch: {

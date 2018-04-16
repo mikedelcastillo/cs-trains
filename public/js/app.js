@@ -10620,6 +10620,7 @@ function normalizeComponent (
   name: 'app',
   data() {
     return {
+      screen: "loading",
       initializing: true,
       systems: [],
       viewing: []
@@ -10634,7 +10635,9 @@ function normalizeComponent (
     },
     fetchSystems() {
       this.initializing = true;
+      this.screen = "loading";
       this.$http.get("/api/systems").then(({ data }) => {
+        this.screen = "story-1";
         this.initializing = false;
         this.systems = data;
         this.viewing = this.systems.filter(system => system.system_id == "mnl");
@@ -10775,7 +10778,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n#content-wrapper,#sidebar-wrapper{position:absolute;top:0;height:100%\n}\n#sidebar-wrapper{left:0;width:250px;overflow:hidden;overflow-y:auto\n}\n#sidebar-wrapper #header-wrapper{padding:1.5em\n}\n#sidebar-wrapper #header-wrapper .title{font-size:2em;font-family:Montserrat,sans-serif;text-transform:uppercase;font-weight:900;letter-spacing:.2em;color:#56ccf2\n}\n#sidebar-wrapper #header-wrapper .subtitle{font-weight:300;opacity:.25;font-size:.7em\n}\n#sidebar-wrapper #systems-wrapper .title{padding:.5em 1.5em;font-weight:700;text-transform:uppercase;font-family:Montserrat,sans-serif;font-size:.9em\n}\n#sidebar-wrapper #systems-wrapper .systems .system{padding:.5em 1.5em;cursor:pointer\n}\n#sidebar-wrapper #systems-wrapper .systems .system:hover{background-color:rgba(0,0,0,.2)\n}\n#sidebar-wrapper #systems-wrapper .systems .system .city,#sidebar-wrapper #systems-wrapper .systems .system .country{font-size:.7em;opacity:.5\n}\n#content-wrapper{left:250px;width:-webkit-calc(100% - 250px);width:-moz-calc(100% - 250px);width:calc(100% - 250px)\n}\n#content-wrapper .views-wrapper{position:absolute;top:0;left:0;width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between\n}\n#content-wrapper .views-wrapper .view{border-left:2px solid #171717;-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;-webkit-flex-shrink:1;-ms-flex-negative:1;flex-shrink:1\n}\n#content-wrapper .views-wrapper .view .btn-close{z-index:1;width:2em;height:2em;position:absolute;top:2em;right:2em;cursor:pointer\n}\n#content-wrapper .views-wrapper .view .btn-close .line{width:2em;height:2px;position:absolute;left:50%;top:50%;background-color:#fff\n}\n#content-wrapper .views-wrapper .view .btn-close .line.line-1{-webkit-transform:translate(-50%,-50%) rotate(-45deg);-moz-transform:translate(-50%,-50%) rotate(-45deg);-ms-transform:translate(-50%,-50%) rotate(-45deg);-o-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg)\n}\n#content-wrapper .views-wrapper .view .btn-close .line.line-2{-webkit-transform:translate(-50%,-50%) rotate(45deg);-moz-transform:translate(-50%,-50%) rotate(45deg);-ms-transform:translate(-50%,-50%) rotate(45deg);-o-transform:translate(-50%,-50%) rotate(45deg);transform:translate(-50%,-50%) rotate(45deg)\n}\n#content-wrapper .views-wrapper .view iframe{border:0;position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:0\n}", ""]);
+exports.push([module.i, "\n#content-wrapper,#sidebar-wrapper{position:absolute;top:0;height:100%\n}\n#sidebar-wrapper{left:0;width:250px;overflow:hidden;overflow-y:auto\n}\n#sidebar-wrapper #header-wrapper{padding:1.5em\n}\n#sidebar-wrapper #header-wrapper .title{font-size:2em;font-family:Montserrat,sans-serif;text-transform:uppercase;font-weight:900;letter-spacing:.2em;color:#3d97e9\n}\n#sidebar-wrapper #header-wrapper .subtitle{font-weight:300;opacity:.25;font-size:.7em\n}\n#sidebar-wrapper #systems-wrapper .title{padding:.5em 1.5em;font-weight:700;text-transform:uppercase;font-family:Montserrat,sans-serif;font-size:.9em\n}\n#sidebar-wrapper #systems-wrapper .systems .system{padding:.5em 1.5em;cursor:pointer\n}\n#sidebar-wrapper #systems-wrapper .systems .system:hover{background-color:rgba(0,0,0,.2)\n}\n#sidebar-wrapper #systems-wrapper .systems .system .city,#sidebar-wrapper #systems-wrapper .systems .system .country{font-size:.7em;opacity:.5\n}\n#sidebar-wrapper .navigation-wrapper{margin-top:4em\n}\n#sidebar-wrapper .navigation-wrapper .navigation{color:hsla(0,0%,100%,.5);font-weight:300;padding:.5em 1.5em;cursor:pointer;font-size:1.2em\n}\n#sidebar-wrapper .navigation-wrapper .navigation:hover{color:#3d97e9\n}\n#sidebar-wrapper .navigation-wrapper .navigation.different:hover{color:#fecb2f\n}\n#content-wrapper{left:250px;width:-webkit-calc(100% - 250px);width:-moz-calc(100% - 250px);width:calc(100% - 250px)\n}\n#content-wrapper .views-wrapper{position:absolute;top:0;left:0;width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between\n}\n#content-wrapper .views-wrapper .view{border-left:2px solid #171717;-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;-webkit-flex-shrink:1;-ms-flex-negative:1;flex-shrink:1\n}\n#content-wrapper .views-wrapper .view .btn-close{z-index:1;width:2em;height:2em;position:absolute;top:2em;right:2em;cursor:pointer\n}\n#content-wrapper .views-wrapper .view .btn-close .line{width:2em;height:2px;position:absolute;left:50%;top:50%;background-color:#fff\n}\n#content-wrapper .views-wrapper .view .btn-close .line.line-1{-webkit-transform:translate(-50%,-50%) rotate(-45deg);-moz-transform:translate(-50%,-50%) rotate(-45deg);-ms-transform:translate(-50%,-50%) rotate(-45deg);-o-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg)\n}\n#content-wrapper .views-wrapper .view .btn-close .line.line-2{-webkit-transform:translate(-50%,-50%) rotate(45deg);-moz-transform:translate(-50%,-50%) rotate(45deg);-ms-transform:translate(-50%,-50%) rotate(45deg);-o-transform:translate(-50%,-50%) rotate(45deg);transform:translate(-50%,-50%) rotate(45deg)\n}\n#content-wrapper .views-wrapper .view iframe{border:0;position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:0\n}\n.screen-text{overflow:auto\n}\n.screen-text .text-wrapper{width:70%;margin:5em auto;max-width:700px\n}\n.screen-text .text-wrapper .title-wrapper .title{font-family:Montserrat,sans-serif;text-transform:uppercase;font-weight:900;font-size:3em;color:#3d97e9\n}\n.screen-text .text-wrapper .title-wrapper .subtitle{font-size:1.5em;font-weight:700\n}\n.screen-text .text-wrapper .paragraphs-wrapper{margin-top:3em;border-left:5px solid #3d97e9\n}\n.screen-text .text-wrapper .paragraphs-wrapper p{padding-left:2em;color:hsla(0,0%,100%,.75);font-weight:300;line-height:1.75em;margin-bottom:1.5em\n}\n.screen-text .text-wrapper .paragraphs-wrapper p.indented{padding-left:4em\n}\n.screen-text .text-wrapper .paragraphs-wrapper p b{color:#fff\n}\n.screen-text .text-wrapper .paragraphs-wrapper p:before{content:\" \";width:20px;height:20px;position:absolute;top:0;left:-12.5px;background-color:#3d97e9;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%\n}\n.screen-text .text-wrapper .buttons-wrapper button{display:block;padding:.5em 2em;font-family:Montserrat,sans-serif;text-transform:uppercase;font-weight:700;color:#fff;cursor:pointer;background-color:#3d97e9;border:0;-webkit-border-radius:1000px;-moz-border-radius:1000px;border-radius:1000px;font-size:1.2em;width:80%;margin:auto\n}\n.screen-text.different .text-wrapper .title-wrapper .title{color:#fecb2f\n}\n.screen-text.different .text-wrapper .paragraphs-wrapper{border-color:#fecb2f\n}\n.screen-text.different .text-wrapper .buttons-wrapper button,.screen-text.different .text-wrapper .paragraphs-wrapper p:before{background-color:#fecb2f\n}", ""]);
 
 // exports
 
@@ -10792,11 +10795,55 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "screen" }, [
-    _vm.initializing
+    _vm.screen == "loading"
       ? _c("div", { staticClass: "screen" }, [_vm._m(0)])
-      : _c("div", { staticClass: "screen" }, [
-          _c("div", { attrs: { id: "sidebar-wrapper" } }, [
+      : _vm._e(),
+    _vm.screen == "story-1"
+      ? _c("div", { staticClass: "screen screen-text" }, [
+          _c("div", { staticClass: "text-wrapper" }, [
             _vm._m(1),
+            _vm._m(2),
+            _c("div", { staticClass: "buttons-wrapper" }, [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.screen = "app"
+                    }
+                  }
+                },
+                [_vm._v("Start Visualization")]
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm.screen == "story-2"
+      ? _c("div", { staticClass: "screen screen-text different" }, [
+          _c("div", { staticClass: "text-wrapper" }, [
+            _vm._m(3),
+            _vm._m(4),
+            _c("div", { staticClass: "buttons-wrapper" }, [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.screen = "app"
+                    }
+                  }
+                },
+                [_vm._v("Return to Visualization")]
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm.screen == "app"
+      ? _c("div", { staticClass: "screen" }, [
+          _c("div", { attrs: { id: "sidebar-wrapper" } }, [
+            _vm._m(5),
             _c("div", { attrs: { id: "systems-wrapper" } }, [
               _c("div", { staticClass: "title" }, [_vm._v("Systems")]),
               _c(
@@ -10826,6 +10873,32 @@ var render = function() {
                     ]
                   )
                 })
+              )
+            ]),
+            _c("div", { staticClass: "navigation-wrapper" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "navigation",
+                  on: {
+                    click: function($event) {
+                      _vm.screen = "story-1"
+                    }
+                  }
+                },
+                [_vm._v("Introduction")]
+              ),
+              _c(
+                "div",
+                {
+                  staticClass: "navigation different",
+                  on: {
+                    click: function($event) {
+                      _vm.screen = "story-2"
+                    }
+                  }
+                },
+                [_vm._v("Insights")]
               )
             ])
           ]),
@@ -10858,6 +10931,7 @@ var render = function() {
             )
           ])
         ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -10870,6 +10944,222 @@ var staticRenderFns = [
         _c("div", { staticClass: "mask" }, [
           _c("div", { staticClass: "circle" })
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title-wrapper" }, [
+      _c("div", { staticClass: "title" }, [_vm._v("Off the Rails:")]),
+      _c("div", { staticClass: "subtitle" }, [
+        _vm._v("Visualizing Rapid Rail Transit Use Across Major Cities")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "paragraphs-wrapper" }, [
+      _c("p", [
+        _vm._v(
+          "It’s no secret that Metro Manila has a severe traffic problem. With the metro ranking "
+        ),
+        _c("b", [_c("i", [_vm._v("first")])]),
+        _vm._v(" in several "),
+        _c("b", [_c("i", [_vm._v("rankings of traffic congestion")])]),
+        _vm._v(
+          ", this concern has forced all sectors of society to consider relevant and useful solutions to this growing problem."
+        )
+      ]),
+      _c("p", [
+        _vm._v(
+          "While private sector initiatives such as ride-sharing powered by Uber and Grab have taken the metro by storm, it is clear that Manila faces a severe congestion problem—one that can only be solved by reducing the number of passenger vehicles plying our roads and highways."
+        )
+      ]),
+      _c("p", [
+        _c("b", [
+          _vm._v(
+            "With car-based initiatives out of the picture, what can our riding public turn to?"
+          )
+        ])
+      ]),
+      _c("p", [
+        _vm._v(
+          "Metro Manila’s light-rail system was the first one to be established in Southeast Asia, bringing rapid transit to what was, at the time,  Asia’s fastest-growing economies. But more than thirty years later, the three lines spanning the constituent cities of the metro are buckling under increased ridership, with breakdowns on MRT-3, the most heavily-used line, often making national headlines."
+        )
+      ]),
+      _c("p", [
+        _vm._v("Despite the issues plaguing Manila’s rail system, "),
+        _c("b", [
+          _c("i", [
+            _vm._v(
+              "the MRT and the LRT have become integral parts of the metro’s transport system"
+            )
+          ])
+        ]),
+        _vm._v(
+          ", transporting thousands of passengers per day across 42 stations."
+        )
+      ]),
+      _c("p", [
+        _vm._v("But "),
+        _c("i", [
+          _vm._v(
+            "would targeted improvements to our metro rail lines actually improve our traffic situation?"
+          )
+        ])
+      ]),
+      _c("p", { staticClass: "indented" }, [
+        _vm._v(
+          "Several cities across the world have either delayed or cancelled projects to expand train lines due to prohibitive monetary and space costs. For instance, Jakarta is only building out the first line of their MRT after seeing high use of their rapid bus transit system."
+        )
+      ]),
+      _c("p", [
+        _vm._v(
+          "How could we possibly measure how much a transit is system is used? Given that, "
+        ),
+        _c("b", [_vm._v("how can we determine how effective a system")]),
+        _vm._v(" actually is?")
+      ]),
+      _c("p", [
+        _vm._v(
+          "To answer this question, we needed to compare how many passengers pass through a system over a certain period of time. We did that by "
+        ),
+        _c("b", [_vm._v("obtaining the entry-and-exit data")]),
+        _vm._v(
+          " across all stations of the MRT-3 line, and, for comparison, that of four other systems from across the world: the "
+        ),
+        _c("i", [_vm._v("London Underground")]),
+        _vm._v(", the "),
+        _c("i", [_vm._v("New York Subway")]),
+        _vm._v(", the "),
+        _c("i", [_vm._v("Seoul Metro")]),
+        _vm._v(", and "),
+        _c("i", [_vm._v("San Francisco’s Bay Area Rapid Transit")]),
+        _vm._v(".")
+      ]),
+      _c("p", [
+        _vm._v(
+          "We used this entry-and-exit data to create an interactive visualization comparing passenger inflow and outflow not only between stations, but also across entire systems—giving us "
+        ),
+        _c("b", [
+          _vm._v(
+            "a great graphical overview how a system is used throughout the day"
+          )
+        ]),
+        _vm._v(".")
+      ]),
+      _c("p", [
+        _vm._v("We also created a quantifier for utilization, called the "),
+        _c("i", [_vm._v("utility index")]),
+        _vm._v(
+          ", gives us a guage of a system's overall activity based on the average entries and exits of each station of a given hour."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title-wrapper" }, [
+      _c("div", { staticClass: "title" }, [_vm._v("Keeping on Track:")]),
+      _c("div", { staticClass: "subtitle" }, [
+        _vm._v("Towards Better Rail Transit in Metro Manila")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "paragraphs-wrapper" }, [
+      _c("p", [
+        _vm._v("From the visualization, "),
+        _c("b", [
+          _vm._v(
+            "it is clear that across all locales, the metro system has become an invaluable component of the city’s overall transport scheme"
+          )
+        ]),
+        _vm._v(", with ridership heading into the millions in a single day.")
+      ]),
+      _c("p", [
+        _vm._v("We can see that all the systems "),
+        _c("b", [
+          _vm._v(
+            "share similar periods of high and low ridership at certain points of the day"
+          )
+        ]),
+        _vm._v(
+          ", and from that, we can easily figure out stations that are integral to city life, most often located in central business districts."
+        )
+      ]),
+      _c("p", { staticClass: "indented" }, [
+        _vm._v(
+          "This tells us that a high stations should be clustered around the CBD—another pattern clear not only in the four overseas systems, but also many others, such as how the Singapore MRT’s greatest clustering is within the Downtown Core: the island nation’s center of economic activity."
+        )
+      ]),
+      _c("p", [
+        _vm._v(
+          "Given that, it is also clear that a big use of metro systems is in "
+        ),
+        _c("b", [
+          _vm._v("getting from the outskirts of the city towards the center")
+        ]),
+        _vm._v(
+          ", and this is reflected in how lines are built all over the world."
+        )
+      ]),
+      _c("p", [
+        _vm._v(
+          "We find too that the number of stations and lines correlates with overall activity—"
+        ),
+        _c("b", [
+          _vm._v(
+            "the more stations accessible to the riding public, the more they will use it"
+          )
+        ]),
+        _vm._v(
+          ". Coupled with how densely populated the cities are, this is especially true with New York’s and Seoul’s utilization indices. "
+        ),
+        _c("b", [_vm._v("Essentially: If you build it, they will come.")])
+      ]),
+      _c("p", [
+        _vm._v(
+          "Given that, it seems as though any kind of rail expansion would be beneficial to the Metro—especially those situated in locations that are either "
+        ),
+        _c("b", [_vm._v("origins or destinations of high foot traffic.")])
+      ]),
+      _c("p", [
+        _vm._v("This visualization offers many other paths of exploration.")
+      ]),
+      _c("p", { staticClass: "indented" }, [
+        _vm._v(
+          "It is clear that stations located in the central business district are highly used. "
+        ),
+        _c("i", [
+          _vm._v(
+            "What about stations located near other points of interest, such as amusement parks or other places of recreation?"
+          )
+        ])
+      ]),
+      _c("p", { staticClass: "indented" }, [
+        _vm._v(
+          "An interesting route to explore would be to investigate the impact of interchanges, which allow users to easily transfer between lines without having to travel between stations on foot. "
+        ),
+        _c("i", [
+          _vm._v(
+            "Does having more line intersections lead to increasing passenger flow?"
+          )
+        ])
+      ]),
+      _c("p", { staticClass: "indented" }, [
+        _vm._v(
+          "Coupling the visualization with an index of the congestion around the station would also help users understand the sheer popularity of a station. Correlations between congestion and station use could indicate how a station could be a point where passengers change modes of transport, while high entries and exits and no congestion could indicate that the station is the last point in a user’s journey."
+        )
       ])
     ])
   },

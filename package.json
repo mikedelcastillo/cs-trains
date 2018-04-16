@@ -1,8 +1,8 @@
 {
   "name": "train-server",
   "version": "1.0.0",
-  "description": "A CS project with Carlos Arcenas and Carlo de Guzman",
-  "main": "index.js",
+  "description": "A CS project by Mike del Castillo, Carlos Arcenas and Carlo de Guzman",
+  "main": "server.js",
   "scripts": {
     "webpack": "webpack",
     "server": "node server",

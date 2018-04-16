@@ -4,7 +4,8 @@ SELECT
   countries.name AS country_name,
   cities.city_id,
   cities.name AS city_name,
-  systems.name AS system_name
+  systems.name AS system_name,
+  cities.utc_offset
 
   ,(SELECT
     MIN(e.unix_start)
